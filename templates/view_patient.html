@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'head_links.html' %}
+    <body class="sb-nav-fixed">
+
+        {% include 'header.html' %}
+
+        <div id="layoutSidenav">
+
+            {% include 'sidebar.html' %}
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <br><br>
+                    <div class="container px-4 ">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Patient record
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Firstname</th>
+                                            <th>Lastname</th>
+                                            <th>Patient Type</th>
+                                            <th>Address</th>
+                                            <th>Contact</th>
+                                            <th>Age</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Firstname</th>
+                                            <th>Lastname</th>
+                                            <th>Patient Type</th>
+                                            <th>Address</th>
+                                            <th>Contact</th>
+                                            <th>Age</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for x in data %}
+                                        <tr>
+                                            <td>{{x[1]}}</td>
+                                            <td>{{x[2]}}</td>
+                                            <td>{{x[6]}}</td>
+                                            <td>{{x[3]}}</td>
+                                            <td>{{x[4]}}</td>
+                                            <td>{{x[5]}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+               {% include 'footer.html'%}
+    </body>
+</html>

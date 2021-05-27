@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'head_links.html' %}
+    <body class="sb-nav-fixed">
+
+        {% include 'header.html' %}
+
+        <div id="layoutSidenav">
+
+            {% include 'sidebar.html' %}
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                {% if data %}
+                                
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>Success!</strong> {{data.msg}}
+                                  </div>
+                                {% endif %}
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Patient</h3></div>
+                                    <div class="card-body">
+                                        <form method="POST" action="/add_patient">
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputFirstName" type="text" name='inputFirstName' required placeholder="Enter your first name" />
+                                                        <label for="inputFirstName">First name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" id="inputLastName" type="text" name="inputLastName" required placeholder="Enter your last name" />
+                                                        <label for="inputLastName">Last name</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="address" type="text" name="address" required placeholder="name@example.com" />
+                                                <label for="address">Address</label>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="contact" type="number" name="contact" required placeholder="Contact" />
+                                                        <label for="contact">Contact</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="age" type="number" name="age" required placeholder="Age" />
+                                                        <label for="age">Age</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0 "> Gender  &nbsp;
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female">
+                                                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0 "> Status  &nbsp;
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="Married" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">Married</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="Unmarried">
+                                                            <label class="form-check-label" for="inlineRadio2">Unmarried</label>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                    
+                                            </div>
+                    
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0 "> Patient Category &nbsp;
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="p_category" id="inlineRadio1" value="General" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">General</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="p_category" id="inlineRadio2" value="Cancer">
+                                                            <label class="form-check-label" for="inlineRadio2">Cancer</label>
+                                                          </div>
+                                                          
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0 "> Stool  &nbsp;
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="stool" id="inlineRadio1" value="Normal" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">Normal</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="stool" id="inlineRadio2" value="Soft">
+                                                            <label class="form-check-label" for="inlineRadio2">Soft</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="stool" id="inlineRadio3" value="Hard">
+                                                            <label class="form-check-label" for="inlineRadio3">Hard</label>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0 "> Sensitive To  &nbsp;
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="sensitivity" id="inlineRadio1" value="N/A" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">N/A</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="sensitivity" id="inlineRadio2" value="Hot">
+                                                            <label class="form-check-label" for="inlineRadio2">Hot</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="sensitivity" id="inlineRadio3" value="Cold">
+                                                            <label class="form-check-label" for="inlineRadio3">Cold</label>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0 "> Taste  &nbsp;
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="taste" id="inlineRadio1" value="N/A" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">N/A</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="taste" id="inlineRadio2" value="Sweet">
+                                                            <label class="form-check-label" for="inlineRadio2">Sweet</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="taste" id="inlineRadio3" value="Salt">
+                                                            <label class="form-check-label" for="inlineRadio3">Salt</label>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                    
+                                            </div>
+                    
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0 "> Thirst  &nbsp;
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="thirst" id="inlineRadio1" value="Low" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">Low</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="thirst" id="inlineRadio2" value="Medium">
+                                                            <label class="form-check-label" for="inlineRadio2">Medium</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="thirst" id="inlineRadio3" value="High">
+                                                            <label class="form-check-label" for="inlineRadio3">High</label>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0 "> Burning Hands-Feet  &nbsp;
+                                                        
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="burn_feel" id="inlineRadio2" value="No" checked>
+                                                            <label class="form-check-label" for="inlineRadio2">No</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="burn_feel" id="inlineRadio2" value="Yes">
+                                                            <label class="form-check-label" for="inlineRadio2">Yes</label>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                    
+                                            </div>
+                                            
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0 "> Hunger  &nbsp;
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="hunger" id="inlineRadio1" value="Normal" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">Normal</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="hunger" id="inlineRadio2" value="Low">
+                                                            <label class="form-check-label" for="inlineRadio2">Low</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="hunger" id="inlineRadio3" value="High">
+                                                            <label class="form-check-label" for="inlineRadio3">High</label>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0 "> Sleep  &nbsp;
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="sleep" id="inlineRadio1" value="Normal" checked>
+                                                            <label class="form-check-label" for="inlineRadio1">Normal</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="sleep" id="inlineRadio2" value="Low">
+                                                            <label class="form-check-label" for="inlineRadio2">Low</label>
+                                                          </div>
+                                                          <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="sleep" id="inlineRadio3" value="High">
+                                                            <label class="form-check-label" for="inlineRadio3">High</label>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" id="inputEmail" rows="10" cols="50" style="height: 120px;" name="Constitution" ></textarea>
+                                                <label for="inputEmail">Constitution</label>
+                                            </div>
+                    
+                                            <div class=" mb-3">
+                                                <input class="form-control" id="inputEmail" type="file" name="docs" placeholder="name@example.com" />
+                                                
+                                            </div>
+                    
+                    
+                                            <div class="mt-4 mb-0 row">
+                                                <div class="d-grid col-md-12"><button type="submit" class="btn btn-primary btn-block" >Submit</button></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+               {% include 'footer.html'%}
+    </body>
+</html>

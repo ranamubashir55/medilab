@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'head_links.html' %}
+    <body class="sb-nav-fixed">
+
+        {% include 'header.html' %}
+
+        <div id="layoutSidenav">
+
+            {% include 'sidebar.html' %}
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                
+                                {% if data %}
+                                <div class="alert {{data.class}} alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    {{data.msg}}
+                                  </div>
+                                {% endif %}
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Change Password</h3></div>
+                                    <div class="card-body">
+                                        <form method="POST" action="/settings">
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="new_pass" type="password" name="new_pass" placeholder="Enter your first name" />
+                                                        <label for="new_pass">New Password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" id="confirm_pass" type="password"  name="confirm_pass" placeholder="Enter your last name" />
+                                                        <label for="confirm_pass">Confirm Password</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="old_pass" type="password" name="old_pass" placeholder="name@example.com" />
+                                                <label for="old_pass">Old Password</label>
+                                            </div>
+
+                        <div class="mt-4 mb-0 row">
+                            <div class="d-grid col-md-12"><button type="submit" class="btn btn-primary btn-block" >Submit</button></div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
