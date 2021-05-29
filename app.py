@@ -16,7 +16,7 @@ def make_session_permanent():
     session.permanent = True
     app.permanent_session_lifetime = datetime.timedelta(minutes=30)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     print("hello index")
     
