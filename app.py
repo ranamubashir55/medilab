@@ -1,10 +1,6 @@
 import datetime
-from types import MethodType
 from flask import Flask, session, redirect, url_for, escape, request, render_template, jsonify
-import json,os
 import sqlite3
-import random,string
-from dateutil import parser
 from datetime import datetime as d
 
 app = Flask(__name__)
