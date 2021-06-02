@@ -28,6 +28,7 @@
                                             <th>Address</th>
                                             <th>Contact</th>
                                             <th>Age</th>
+                                            <th>Docs</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -38,6 +39,7 @@
                                             <th>Address</th>
                                             <th>Contact</th>
                                             <th>Age</th>
+                                            <th>Docs</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -49,6 +51,14 @@
                                             <td>{{x[3]}}</td>
                                             <td>{{x[4]}}</td>
                                             <td>{{x[5]}}</td>
+                                            <td>
+                                            {% if x[17] %}
+                                            <form action="/send_file" method="POST">
+                                                <input name="file_name" type="text" value=" {{x[17]}} " hidden>
+                                               <button style="all: unset; color: blue;  -webkit-text-fill-color: blue; cursor: pointer;" type="submit"> {{x[17]}} </button>
+                                            </form>
+                                            </td>
+                                            {% endif %}
                                         </tr>
                                         {% endfor %}
                                     </tbody>

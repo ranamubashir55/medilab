@@ -1,11 +1,15 @@
 import datetime
-from flask import Flask, session, redirect, url_for, escape, request, render_template, jsonify
-import sqlite3
+from flask import Flask, session, redirect, url_for, escape, request, render_template, jsonify, send_from_directory
+import sqlite3, os
 from datetime import datetime as d
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "any random string"
 
+app.config['UPLOAD_FOLDER'] = 'uploads'
+if not 'uploads' in os.listdir():
+    os.mkdir('uploads')
 
 @app.before_request
 def make_session_permanent():
@@ -35,12 +39,27 @@ def add_patient():
     if request.method== 'GET':
         return render_template("add_patient.html")
     if request.method=="POST":
+        f = request.files['docs']
+        filename=''
+        if f:
+            filename = secure_filename(f.filename)
+            path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            f.save(path)
         conn = sqlite3.connect('database.db')
         query = "INSERT into patients(firstname , lastname , address , contact ,age ,  gender , status ,patient_category , stool , sensitivity , taste , thirst , hands_feet_burn , hunger , sleep ,constitution, attachment)"
-        query =query+f"VALUES ('{request.form['inputFirstName']}', '{request.form['inputLastName']}', '{request.form['address']}', '{request.form['contact']}', '{request.form['age']}', '{request.form['gender']}', '{request.form['status']}', '{request.form['p_category']}', '{request.form['stool']}', '{request.form['sensitivity']}', '{request.form['taste']}', '{request.form['thirst']}', '{request.form['burn_feel']}', '{request.form['hunger']}', '{request.form['sleep']}', '{request.form['Constitution']}', '{request.form['docs']}')"
+        query =query+f"VALUES ('{request.form['inputFirstName']}', '{request.form['inputLastName']}', '{request.form['address']}', '{request.form['contact']}', '{request.form['age']}', '{request.form['gender']}', '{request.form['status']}', '{request.form['p_category']}', '{request.form['stool']}', '{request.form['sensitivity']}', '{request.form['taste']}', '{request.form['thirst']}', '{request.form['burn_feel']}', '{request.form['hunger']}', '{request.form['sleep']}', '{request.form['Constitution']}', '{filename}')"
         conn.execute(query)
         conn.commit()
         return render_template('add_patient.html', data={"msg":"Patient data added successfully.."})
+
+@app.route("/send_file", methods=['POST'])
+def get_file():
+    """Download a file."""
+    if request.method=="POST":
+        file_name = request.form['file_name']
+        directory = "uploads/"
+        print(file_name.strip())
+        return send_from_directory(directory, file_name.strip(), as_attachment=True)
 
 @app.route('/settings', methods=['POST', 'GET'])
 def settings():

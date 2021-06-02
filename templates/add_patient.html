@@ -24,7 +24,7 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Patient</h3></div>
                                     <div class="card-body">
-                                        <form method="POST" action="/add_patient">
+                                        <form method="POST" action="/add_patient" enctype="multipart/form-data">
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
@@ -226,7 +226,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                    
+                                            
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" id="inputEmail" rows="7" cols="50" style="height: 120px;" name="symptoms" ></textarea>
+                                                <label for="inputEmail">Symptoms</label>
+                                            </div>
+
                                             <div class="form-floating mb-3">
                                                 <textarea class="form-control" id="inputEmail" rows="10" cols="50" style="height: 120px;" name="Constitution" ></textarea>
                                                 <label for="inputEmail">Constitution</label>
