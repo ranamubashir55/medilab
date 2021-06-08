@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'head_links.html' %}
+    <body class="sb-nav-fixed">
+
+        {% include 'header.html' %}
+
+        <div id="layoutSidenav">
+
+            {% include 'sidebar.html' %}
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                
+                                {% if msg %}
+                                <div class="alert {{msg.class}} alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    {{msg.msg}}
+                                  </div>
+                                {% endif %}
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Combination</h3></div>
+                                    <div class="card-body">
+                                        <form method="POST" action="{% if data %} /add_combination?id={{data[0]}} {% else %} /add_combination {% endif %} ">
+                                            
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" id="inputEmail" rows="7" cols="50" style="height: 120px;" required name="disease">{% if data %} {{data[1]}} {% endif %}</textarea>
+                                                <label for="inputEmail">Disease</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" id="inputEmail" rows="10" cols="50" style="height: 120px;" required name="medicine" >{% if data %} {{data[2]}} {% endif %}</textarea>
+                                                <label for="inputEmail">Medicine</label>
+                                            </div>
+
+                                            <div class="mt-4 mb-0 row">
+                                                <div class="d-grid col-md-12"><button type="submit" class="btn btn-primary btn-block" >Submit</button></div>
+                                            </div>
+                                        </form>
+                                        </div>
+                
+                                    </div>
+                                </div>
+                            </div>
+            
+                    </div>
+                </main>
+            </div>
+        </div>
+        {% include 'footer.html'%}
+    </body>
+</html>
+

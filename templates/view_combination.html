@@ -16,31 +16,21 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Patient record
+                                Disease's
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Firstname</th>
-                                            <th>Lastname</th>
-                                            <th>Patient Type</th>
-                                            <th>Address</th>
-                                            <th>Contact</th>
-                                            <th>Age</th>
-                                            <th>Docs</th>
+                                            <th>Disease</th>
+                                            <th>Medicine</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Firstname</th>
-                                            <th>Lastname</th>
-                                            <th>Patient Type</th>
-                                            <th>Address</th>
-                                            <th>Contact</th>
-                                            <th>Age</th>
-                                            <th>Docs</th>
+                                            <th>Disease</th>
+                                            <th>Medicine</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot>
@@ -49,19 +39,10 @@
                                         <tr>
                                             <td>{{x[1]}}</td>
                                             <td>{{x[2]}}</td>
-                                            <td>{{x[6]}}</td>
-                                            <td>{{x[3]}}</td>
-                                            <td>{{x[4]}}</td>
-                                            <td>{{x[5]}}</td>
                                             <td>
-                                            {% if x[17] %}
-                                            <form action="/send_file" method="POST">
-                                                <input name="file_name" type="text" value=" {{x[17]}} " hidden>
-                                               <button style="all: unset; color: blue;  -webkit-text-fill-color: blue; cursor: pointer;" type="submit"> {{x[17]}} </button>
-                                            </form>
+                                                <a href="{{url_for('add_combination', id=x[0]) }}" style="all:unset; cursor: pointer; color: black;"> <i class="fas fa-edit"></i> </a> &nbsp; &nbsp;
+                                                <a href="{{url_for('del_combination', id=x[0]) }}" style="all:unset; cursor: pointer;"> <i class="fas fa-trash"></i> </a>
                                             </td>
-                                            {% endif %}
-                                            <td><a href="{{url_for('patient_detail', id=x[0]) }}" style="all:unset; cursor: pointer; color: black;"> <i class="fas fa-edit"></i> </a> </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

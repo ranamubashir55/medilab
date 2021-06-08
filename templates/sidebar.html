@@ -29,9 +29,14 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     View patient record
                 </a>
-                <a class="nav-link" href="tables.html">
+                <div class="sb-sidenav-menu-heading">Combinations</div>
+                <a class="nav-link" href="{{ url_for('add_combination') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Users
+                    Add combination
+                </a>
+                <a class="nav-link" href="{{ url_for('view_combination') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    View combinations
                 </a>
             </div>
         </div>

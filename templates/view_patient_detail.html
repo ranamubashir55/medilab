@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'head_links.html' %}
+    <body class="sb-nav-fixed">
+
+        {% include 'header.html' %}
+
+        <div id="layoutSidenav">
+
+            {% include 'sidebar.html' %}
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <br><br>
+                    {% if msg %}
+                                
+                        <div class="alert msg.class alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Success!</strong> {{msg.msg}}
+                        </div>
+                    {% endif %}
+
+                    <div class="container px-4 ">
+                        <form method="POST" action="/patient_detail?id={{p_id}}" enctype="multipart/form-data">
+                            <div class="form-group row">
+                              <label for="firstname" class="col-sm-2 col-form-label">FirstName</label>
+                              <div class="col-sm-4">
+                                <input type="text" readonly class="form-control-sm form-control" id="firstname" value="{{patient_detail[1]}}">
+                              </div>
+                              <label for="lastname" class="col-sm-2 col-form-label">LastName</label>
+                              <div class="col-sm-4">
+                                <input type="text" readonly class="form-control-sm form-control" id="lastname" value="{{patient_detail[2]}}">
+                              </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                              <label for="reference" class="col-sm-2 col-form-label">Reference</label>
+                              <div class="col-sm-4">
+                                <input type="text" class="form-control-plaintext form-control-sm" disabled id="reference" value="{{patient_detail[0]}}">
+                              </div>
+                              <label for="age" class="col-sm-2 col-form-label">Age</label>
+                              <div class="col-sm-4">
+                                <input type="number" class="form-control form-control-sm" id="age" name ="age" value="{{patient_detail[5]}}">
+                              </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+                                <div class="col-sm-4">
+                                    <input type="text" disabled class="form-control form-control-sm" id="age" value="{{patient_detail[7]}}">
+                                </div>
+
+                                <label for="contact" class="col-sm-2 col-form-label">Contact</label>
+                                <div class="col-sm-4">
+                                  <input type="number" class="form-control form-control-sm" name="contact" id="contact" value="{{patient_detail[4]}}">
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="marritial" class="col-sm-2 col-form-label">Marritial Status</label>
+                                <div class="col-sm-4">
+                                  <select  class="form-control form-control-sm" id="marritial" name="marritial">
+                                      <option value="Unmarried">Unmarried</option>
+                                      <option value="Married">Married</option>
+                                  </select>
+                                </div>
+                                
+                                <label for="sensitive" class="col-sm-2 col-form-label">Sensitive To</label>
+                                <div class="col-sm-4">
+                                  <select class="form-control form-control-sm" id="sensitive" name="sensitive">
+                                      <option value="N/A" >N/A</option>
+                                      <option value="Hot" >Hot</option>
+                                      <option value="cold">  Cold</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="taste" class="col-sm-2 col-form-label">Taste</label>
+                                <div class="col-sm-4">
+                                  <select class="form-control form-control-sm" id="taste" name="taste">
+                                    <option value="N/A" >N/A</option>
+                                      <option value="Sweet" >Sweet</option>
+                                      <option value="Salt" >Salt</option>
+                                  </select>
+                                </div>
+
+                                <label for="thirst" class="col-sm-2 col-form-label">Thirst</label>
+                                <div class="col-sm-4">
+                                  <select class="form-control form-control-sm" id="thirst" name="thirst">
+                                      <option value="Low" >Low</option>
+                                      <option value="Medium" >Medium</option>
+                                      <option value="High" >High</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="burning" class="col-sm-2 col-form-label">Burning of Hands & Feet</label>
+                                <div class="col-sm-4">
+                                  <select class="form-control form-control-sm" id="burning" name="burning">
+                                      <option value="Yes" >Yes</option>
+                                      <option value="No" >No</option>
+                                  </select>
+                                </div>
+
+                                <label for="hunnger" class="col-sm-2 col-form-label">Hunger</label>
+                                <div class="col-sm-4">
+                                  <select class="form-control form-control-sm" id="hunnger" name="hunnger">
+                                    <option value="Low" >Low</option>
+                                    <option value="Normal" >Normal</option>
+                                    <option value="High" >High</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="sleep" class="col-sm-2 col-form-label">Sleep</label>
+                                <div class="col-sm-4">
+                                  <select type="text" class="form-control form-control-sm" id="sleep" name="sleep">
+                                    <option value="Low" >Low</option>
+                                      <option value="Normal" >Normal</option>
+                                      <option value="High" >High</option>
+                                  </select>
+                                </div>
+
+                                <label for="p_category" class="col-sm-2 col-form-label">Patient Category</label>
+                                <div class="col-sm-4">
+                                  <select  class="form-control form-control-sm" id="p_category" value="{{patient_detail[6]}}" name="p_category">
+                                    <option value="Cancer">Cancer</option>  
+                                    <option value="General">General</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="stool" class="col-sm-2 col-form-label">Stool</label>
+                                <div class="col-sm-4">
+                                  <select type="text" class="form-control form-control-sm" id="stool" value="{{patient_detail[9]}}" name="stool">
+                                    <option>Normal</option>
+                                    <option>Soft</option>
+                                    <option>Hard</option>
+                                  </select>
+                                </div>
+
+                                <label for="constitution" class="col-sm-2 col-form-label">Constitution</label>
+                                <div class="col-sm-4">
+                                  <input type="text" class="form-control form-control-sm" id="constitution" value="{{patient_detail[16]}}" name="constitution">
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="address" class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-sm-4">
+                                  <input type="text" class="form-control form-control-sm" id="address" value="{{patient_detail[3]}}" name="address">
+                                </div>
+
+                                <label for="file" class="col-sm-2 col-form-label">Upload Docs</label>
+                                <div class="col-sm-4">
+                                  <input type="file" class="form-control form-control-sm" id="file" value="{{patient_detail[17]}}" name="docs" >
+                                </div>
+
+                              </div>
+                              <button class="btn btn-primary" style="float: right;">Update Info</button>
+                              <br>
+
+                          </form>
+
+                        <hr/>
+
+                        <a class="btn btn-primary" href="{{ url_for('add_visit', id =  p_id  ) }}">Add New Visit</a>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Visit's
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Symptoms</th>
+                                            <th>Diagnosis</th>
+                                            <th>Medicine</th>
+                                            <th>Feedback</th>
+                                            <th>Charged fee</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Symptoms</th>
+                                            <th>Diagnosis</th>
+                                            <th>Medicine</th>
+                                            <th>Feedback</th>
+                                            <th>Charged fee</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for x in data %}
+                                        <tr>
+                                            <td>{{x[6]}}</td>
+                                            <td>{{x[2]}}</td>
+                                            <td>{{x[3]}}</td>
+                                            <td>{{x[4]}}</td>
+                                            <td>{{x[7]}}</td>
+                                            <td>Rs. {{x[5]}}</td>
+                                            <td><a href="{{url_for('add_visit', v_id = x[0], ) }}" style="all:unset; cursor: pointer; color: black;"> <i class="fas fa-edit"></i> </a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <script>
+                    document.getElementById("marritial").value = "{{patient_detail[8]}}"
+                    document.getElementById("sensitive").value = "{{patient_detail[10]}}"
+                    document.getElementById("taste").value = "{{patient_detail[11]}}"
+                    document.getElementById("thirst").value = "{{patient_detail[12]}}"
+                    document.getElementById("burning").value = "{{patient_detail[13]}}"
+                    document.getElementById("hunnger").value = "{{patient_detail[14]}}"
+                    document.getElementById("sleep").value = "{{patient_detail[15]}}"
+                    document.getElementById("p_category").value = "{{patient_detail[6]}}"    
+                    document.getElementById("stool").value = "{{patient_detail[9]}}" 
+
+                </script>
+               {% include 'footer.html'%}
+               
+    </body>
+</html>

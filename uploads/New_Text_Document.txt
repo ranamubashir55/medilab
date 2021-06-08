@@ -1,0 +1,6 @@
+web and consumer service shold mount the scripts directory
+
+move smtp logic in invoked script and get the email and text as sc_params
+
+when first time container is created we need to create kafka topic manualy... add this instruction in readme file
+

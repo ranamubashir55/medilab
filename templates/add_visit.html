@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'head_links.html' %}
+    <body class="sb-nav-fixed">
+
+        {% include 'header.html' %}
+
+        <div id="layoutSidenav">
+
+            {% include 'sidebar.html' %}
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                
+                                {% if msg %}
+                                <div class="alert {{msg.class}} alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    {{msg.msg}}
+                                  </div>
+                                {% endif %}
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">{% if v_data %} Update patient visit info {% else %} Add Visit {% endif %}</h3></div>
+                                    <div class="card-body">
+                                        <form method="POST" action="{% if v_data %} /add_visit?v_id={{vid}} {% else %} /add_visit?id={{p_id}} {% endif %}">
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" id="inputEmail" rows="7" cols="50" style="height: 120px;" required name="symptoms">{% if v_data %} {{v_data[2]}} {% endif %}</textarea>
+                                                <label for="inputEmail">Symptoms</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" id="inputEmail" rows="7" cols="50" style="height: 120px;" required name="diagnosis">{% if v_data %} {{v_data[3]}} {% endif %}</textarea>
+                                                <label for="inputEmail">Diagnosis</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" id="inputEmail" rows="10" cols="50" style="height: 120px;" required name="medicine" >{% if v_data %} {{v_data[4]}} {% endif %}</textarea>
+                                                <label for="inputEmail">Medicine</label>
+                                            </div>
+                                            
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" id="inputEmail" rows="7" cols="50" style="height: 120px;" required name="feedback">{% if v_data %} {{v_data[7]}} {% endif %}</textarea>
+                                                <label for="inputEmail">Feedback</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input class="form-control" id="inputLastName" type="text" name="fee" value="{% if v_data %} {{v_data[5]}} {% endif %}" required placeholder="Fee Amount" />
+                                                    <label for="inputLastName">Fee Charged</label>
+                                                </div>
+                                            </div>
+                                            <input type="text" name="repeat" id="repeat" value="" hidden>
+                                            <div class="mt-4 mb-0 row">
+                                                <div class="d-grid col-md-4"><button type="submit" class="btn btn-primary btn-block" >Submit</button></div>
+                                                <div class="d-grid col-md-4"><button type="submit" class="btn btn-primary btn-block" onclick = "Repeat()" >Repeat</button></div>
+                                            </div>
+                                        </form>
+                                        </div>
+                
+                                    </div>
+                                </div>
+                            </div>
+            
+                    </div>
+                </main>
+            </div>
+        </div>
+        <script>
+            function Repeat(){
+                document.getElementById("repeat").value = "{% if v_data %} {{v_data[1]}} {% endif %}"
+            }
+        </script>
+        {% include 'footer.html'%}
+    </body>
+</html>
+
