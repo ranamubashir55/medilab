@@ -72,6 +72,7 @@ def add_visit():
         date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
         p_id = request.args.get("id")
         v_id = request.args.get("v_id")
+        pid = request.args.get("p_id")
         symp = request.form['symptoms']
         diagnosis = request.form['diagnosis']
         med = request.form['medicine']
@@ -86,12 +87,12 @@ def add_visit():
             conn.execute(query)
             conn.commit()
             return redirect(url_for('patient_detail', id=int(p_id)))
-        if v_id and not is_repeat:
+        if v_id and not is_repeat and pid:
             query = f"Update patient_visit set symptoms='{symp}',diagnosis='{diagnosis}', medicine='{med}', fee='{fee}', date='{date_time}', feedback='{feedback}'  where id = {int(v_id)}"
             message = "Patient visit info has been updated successfully.. "
             conn.execute(query)
             conn.commit()
-            return render_template("add_visit.html", msg={"msg":message,"class":"alert-success"})
+            return redirect(url_for("patient_detail", id=int(pid)))
     
         
         
