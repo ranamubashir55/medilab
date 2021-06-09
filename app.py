@@ -32,7 +32,7 @@ def admin():
     query = "Select (select count(*) from patients) as count1, (select count(*) from combination) as count2, (select count(*) from patient_visit) as count3, (select count(*) from appointments) as count4"
     records = conn.execute(query)
     data = records.fetchone()
-    return render_template("dashboard.html", data = {"patients":data[0], "combination":data[1], "visits":data[2],"appoint":data[3]})
+    return render_template("dashboard.html", data = {"patients":data[0], "combination":data[1], "visits":data[2],"appoint":data[3]}, session_id = id)
 
 @app.route('/add_patient', methods=['POST','GET'])
 def add_patient():
