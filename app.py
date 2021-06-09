@@ -28,8 +28,11 @@ def admin():
     if 'id' not in session:
         return render_template("login.html")
     id = session['id']
-    print(id)
-    return render_template("dashboard.html")
+    conn = sqlite3.connect("database.db")
+    query = "Select (select count(*) from patients) as count1, (select count(*) from combination) as count2, (select count(*) from patient_visit) as count3, (select count(*) from appointments) as count4"
+    records = conn.execute(query)
+    data = records.fetchone()
+    return render_template("dashboard.html", data = {"patients":data[0], "combination":data[1], "visits":data[2],"appoint":data[3]})
 
 @app.route('/add_patient', methods=['POST','GET'])
 def add_patient():
@@ -52,7 +55,23 @@ def add_patient():
         conn.commit()
         return render_template('add_patient.html', data={"msg":"Patient data added successfully.."})
 
-@app.route("/add_visit", methods=['GET','POST','PUT'])
+@app.route("/book_appointment", methods=["GET", "POST"])
+def add_appointment():
+    if 'id' not in session:
+        return render_template("login.html")
+    if request.method== 'GET':
+        conn = sqlite3.connect('database.db')
+        record = conn.execute(f"select * from appointments")
+        data = record.fetchall()
+        return render_template("view_appointments.html", data = data)
+
+    if request.method=="POST":
+        conn = sqlite3.connect('database.db')
+        conn.execute(f"Insert into appointments (name, email, date, phone, department, doctor, message) Values ('{request.form['name']}', '{request.form['email']}', '{request.form['date']}','{request.form['phone']}','{request.form['department']}','{request.form['doctor']}','{request.form['message']}' )")
+        conn.commit()
+        return jsonify({"msg":"success"}), 200
+
+@app.route("/add_visit", methods=['GET','POST'])
 def add_visit():
     if 'id' not in session:
         return render_template("login.html")

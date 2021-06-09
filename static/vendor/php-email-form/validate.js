@@ -130,7 +130,7 @@
       data: data,
       timeout: 40000
     }).done( function(msg){
-      if (msg.trim() == 'OK') {
+      if (msg.msg == 'success') {
         this_form.find('.loading').slideUp();
         this_form.find('.sent-message').slideDown();
         this_form.find("input:not(input[type=submit]), textarea").val('');
@@ -142,6 +142,7 @@
         this_form.find('.error-message').slideDown().html(msg);
       }
     }).fail( function(data){
+      console.log("fail")
       console.log(data);
       var error_msg = "Form submission failed!<br>";
       if(data.statusText || data.status) {
