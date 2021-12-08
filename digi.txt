@@ -1,0 +1,5 @@
+ip:143.244.169.247
+host#dynamicCure-flask
+pwd#dynamic1Cure
+
+http://dynamic-cure.com/
